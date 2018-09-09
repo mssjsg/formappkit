@@ -14,6 +14,14 @@ class FormItemsManager {
         }
     }
 
+    fun getItem(position: Int): FormItem {
+        return formItems.get(position)
+    }
+
+    fun getItemsCount(): Int {
+        return formItems.size
+    }
+
     fun addItem(formItem: FormItem) {
         formItems.add(formItem)
         itemListeners.forEach {
