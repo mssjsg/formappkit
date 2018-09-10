@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import io.github.mssjsg.formappkit.R
 import io.github.mssjsg.formappkit.data.FormDataManager
+import io.github.mssjsg.formappkit.model.Form
 import io.github.mssjsg.formappkit.model.element.FormElement
 import io.github.mssjsg.formappkit.ui.formitem.FormElementItemData
 import io.github.mssjsg.formappkit.ui.formitem.FormItem
@@ -15,7 +16,7 @@ import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.FormItemViewHolder
 import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.TitleViewHolder
 import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.UnknownItemViewHolder
 
-class FormAdapter(val formDataManager: FormDataManager): RecyclerView.Adapter<FormItemViewHolder<out FormItemData>>(), FormItemsManager.ItemListener {
+class FormAdapter(val formDataManager: FormDataManager, val form: Form): RecyclerView.Adapter<FormItemViewHolder<out FormItemData>>(), FormItemsManager.ItemListener {
     private val formItemsManager = FormItemsManager()
 
     private val itemTypes: ArrayMap<String, Int> = ArrayMap()
@@ -25,6 +26,8 @@ class FormAdapter(val formDataManager: FormDataManager): RecyclerView.Adapter<Fo
         itemTypes.put(FormElement.ELEMENT_TYPE_TITLE, itemTypes.size)
         itemTypes.put(FormElement.ELEMENT_TYPE_TEXT_FIELD, itemTypes.size)
         itemTypes.put(FormElement.ELEMENT_TYPE_SUBFORM, itemTypes.size)
+
+        formItemsManager.addForm(form)
     }
 
     fun addType(type: String) {
@@ -72,7 +75,7 @@ class FormAdapter(val formDataManager: FormDataManager): RecyclerView.Adapter<Fo
                                             formElementData: FormElementItemData): FormItemViewHolder<out FormItemData> {
         when(formElementData.element.type) {
             FormElement.ELEMENT_TYPE_TITLE -> {
-                return TitleViewHolder(layoutInflater.inflate(R.layout.item_title, parent, false))
+                return TitleViewHolder(layoutInflater.inflate(R.layout.item_title, parent, false), form)
             }
             FormElement.ELEMENT_TYPE_TEXT_FIELD -> {
                 // TODO
@@ -90,6 +93,10 @@ class FormAdapter(val formDataManager: FormDataManager): RecyclerView.Adapter<Fo
     }
 
     override fun onBindViewHolder(formItemViewHolder: FormItemViewHolder<out FormItemData>, position: Int) {
-
+        when(formItemViewHolder) {
+            is TitleViewHolder -> {
+                formItemViewHolder.bindData(formItemsManager.getItem(position).data as FormElementItemData)
+            }
+        }
     }
 }
