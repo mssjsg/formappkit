@@ -19,7 +19,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        FormAppManager.forms.put(FORM_PERSONAL_DETAILS,
+        FormAppKit.getDefaultFormAppManager().forms.put(FORM_PERSONAL_DETAILS,
                 formOf(
                         Title("Who are you?"),
                         TextInputField("name", TextInputField.Meta(true, "Your Name")),

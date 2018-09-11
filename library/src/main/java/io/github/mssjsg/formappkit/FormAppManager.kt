@@ -8,7 +8,7 @@ import io.github.mssjsg.formappkit.model.Form
  * A manager for helping to keep the data that may be used globally in the app. but it's not neccessary
  * to use this manager
  */
-object FormAppManager {
+class FormAppManager {
     val formDataManager: FormDataManager = DefaultFormDataManager()
     val forms = hashMapOf<String, Form>()
 }
