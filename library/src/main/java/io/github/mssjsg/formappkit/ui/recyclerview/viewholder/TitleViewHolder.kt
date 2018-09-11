@@ -4,16 +4,16 @@ import android.view.View
 import android.widget.TextView
 import io.github.mssjsg.formappkit.data.FormDataManager
 import io.github.mssjsg.formappkit.model.Form
-import io.github.mssjsg.formappkit.model.element.FieldTitle
+import io.github.mssjsg.formappkit.model.element.Title
 
-class TitleViewHolder(view: View, form: Form): FormElementViewHolder<FieldTitle>(view, form, null) {
+class TitleViewHolder(view: View): FormElementViewHolder<Title>(view) {
     private val textView: TextView
 
     init {
         textView = view as TextView
     }
 
-    override fun bindElement(element: FieldTitle, form: Form, dataManager: FormDataManager?) {
+    override fun bindElement(element: Title) {
         textView.setText(element.data)
     }
 

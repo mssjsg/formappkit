@@ -8,15 +8,15 @@ import io.github.mssjsg.formappkit.R
 import io.github.mssjsg.formappkit.data.FormDataManager
 import io.github.mssjsg.formappkit.model.Form
 import io.github.mssjsg.formappkit.model.element.FormElement
+import io.github.mssjsg.formappkit.model.element.TextInputField
 import io.github.mssjsg.formappkit.ui.formitem.FormElementItemData
 import io.github.mssjsg.formappkit.ui.formitem.FormItem
 import io.github.mssjsg.formappkit.ui.formitem.FormItemData
 import io.github.mssjsg.formappkit.ui.formitem.FormItemsManager
-import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.FormItemViewHolder
-import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.TitleViewHolder
-import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.UnknownItemViewHolder
+import io.github.mssjsg.formappkit.ui.recyclerview.viewholder.*
 
-class FormAdapter(val formDataManager: FormDataManager, val form: Form): RecyclerView.Adapter<FormItemViewHolder<out FormItemData>>(), FormItemsManager.ItemListener {
+class FormAdapter(val formDataManager: FormDataManager, val formId: String,
+                  val form: Form): RecyclerView.Adapter<FormItemViewHolder<out FormItemData>>(), FormItemsManager.ItemListener {
     private val formItemsManager = FormItemsManager()
 
     private val itemTypes: ArrayMap<String, Int> = ArrayMap()
@@ -75,10 +75,11 @@ class FormAdapter(val formDataManager: FormDataManager, val form: Form): Recycle
                                             formElementData: FormElementItemData): FormItemViewHolder<out FormItemData> {
         when(formElementData.element.type) {
             FormElement.ELEMENT_TYPE_TITLE -> {
-                return TitleViewHolder(layoutInflater.inflate(R.layout.item_title, parent, false), form)
+                return TitleViewHolder(layoutInflater.inflate(R.layout.item_title, parent, false))
             }
             FormElement.ELEMENT_TYPE_TEXT_FIELD -> {
-                // TODO
+                return TextInputViewHolder(layoutInflater.inflate(R.layout.item_text_field, parent, false),
+                        formId, formDataManager)
             }
             FormElement.ELEMENT_TYPE_SUBFORM -> {
                 // TODO
@@ -94,7 +95,7 @@ class FormAdapter(val formDataManager: FormDataManager, val form: Form): Recycle
 
     override fun onBindViewHolder(formItemViewHolder: FormItemViewHolder<out FormItemData>, position: Int) {
         when(formItemViewHolder) {
-            is TitleViewHolder -> {
+            is FormElementViewHolder<out FormElement<out Any>> -> {
                 formItemViewHolder.bindData(formItemsManager.getItem(position).data as FormElementItemData)
             }
         }

@@ -27,11 +27,13 @@ class FormFragment: Fragment() {
     }
 
     private lateinit var adapter: FormAdapter
+    private lateinit var formId: String
     private lateinit var form: Form
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        form = FormAppManager.forms.get(arguments?.getString(ARG_FORM_ID)) ?: Form(emptyList())
+        formId = arguments?.getString(ARG_FORM_ID) ?: throw IllegalArgumentException("missing formId")
+        form = FormAppManager.forms.get(formId) ?: Form(emptyList())
     }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,7 +42,7 @@ class FormFragment: Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        adapter = FormAdapter(FormAppManager.formDataManager, form)
+        adapter = FormAdapter(FormAppManager.formDataManager, formId, form)
         list.layoutManager = LinearLayoutManager(view.context).apply { orientation = LinearLayoutManager.VERTICAL }
         list.adapter = adapter
     }
