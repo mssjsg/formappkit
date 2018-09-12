@@ -1,7 +1,7 @@
 package io.github.mssjsg.formappkit.data
 
 import io.github.mssjsg.formappkit.model.Form
-import io.github.mssjsg.formappkit.model.InputData
+import io.github.mssjsg.formappkit.model.Input
 
 interface FormDataManager {
     /**
@@ -25,10 +25,10 @@ interface FormDataManager {
 
     /**
      * @param formId form Id
-     * @param fieldId field Id
+     * @param inputKey input key
      * @return input data
      */
-    fun <T> getInputData(formId: String, fieldId: String): T?
+    fun <T> getInputData(formId: String, inputKey: String): T?
 
     /**
      * @param formId form Id
@@ -40,12 +40,12 @@ interface FormDataManager {
     /**
      * @return input data class type
      */
-    fun getInputDataType(fieldId: String): Class<out Any>
+    fun getInputDataType(formId: String, inputKey: String): Class<out Any>?
 
     /**
      * @return get input map
      */
-    fun getInputMap(formId: String): Map<String, InputData>?
+    fun getInputMap(formId: String): Map<String, Any?>?
 
     /**
      * @return get input json

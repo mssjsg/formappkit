@@ -14,7 +14,7 @@ class CheckBoxViewHolder(view: View, formId: String, dataManager: FormDataManage
     }
 
     override fun bindElement(element: CheckBoxField) {
-        checkBox.setText(element.data.title)
+        checkBox.setText(element.title)
     }
 
     override fun bindInputData(formId: String, fieldId: String, formDataManager: FormDataManager) {

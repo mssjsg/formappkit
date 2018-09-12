@@ -19,10 +19,10 @@ class MainActivity : AppCompatActivity() {
 
         FormAppKit.getDefaultFormAppManager().forms.put(FORM_PERSONAL_DETAILS,
                 formOf(
-                        titleLabel("Who are you?"),
-                        textInputField("name", true, "Your Name"),
-                        titleLabel("Are you a Jedi?"),
-                        checkBoxField("name", true, "Yes")
+                        TitleLabel("Who are you?"),
+                        TextInputField("name", true, "Your Name"),
+                        TitleLabel("Are you a Jedi?"),
+                        CheckBoxField("name", true, "Yes")
                 ))
 
         supportFragmentManager.beginTransaction()

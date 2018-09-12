@@ -12,7 +12,7 @@ class TitleViewHolder(view: View): FormElementViewHolder<TitleLabel>(view) {
     }
 
     override fun bindElement(element: TitleLabel) {
-        textView.setText(element.data)
+        textView.setText(element.title)
     }
 
 }

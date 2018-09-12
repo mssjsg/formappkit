@@ -18,7 +18,7 @@ class TextInputViewHolder(view: View, formId: String, dataManager: FormDataManag
     }
 
     override fun bindElement(element: TextInputField) {
-        inputView.setHint(element.data.hint)
+        inputView.setHint(element.hint)
     }
 
     override fun bindInputData(formId: String, fieldId: String, formDataManager: FormDataManager) {

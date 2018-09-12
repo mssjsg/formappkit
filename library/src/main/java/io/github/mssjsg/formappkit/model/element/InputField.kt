@@ -1,5 +1,6 @@
 package io.github.mssjsg.formappkit.model.element
 
-abstract class InputField<T: InputField.Meta>(id: String, type: String, data: T): FormElement<T>(id, type, data) {
-    open class Meta(val isRequired: Boolean, val type: Class<out Any>)
-}
+import io.github.mssjsg.formappkit.model.Input
+
+abstract class InputField(id: String, type: String, val isRequired: Boolean,
+                             val inputs: Array<Input>): FormElement(id, type)

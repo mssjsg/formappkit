@@ -99,7 +99,7 @@ class FormAdapter(val formDataManager: FormDataManager, val formId: String,
 
     override fun onBindViewHolder(formItemViewHolder: FormItemViewHolder<out FormItemData>, position: Int) {
         when(formItemViewHolder) {
-            is FormElementViewHolder<out FormElement<out Any>> -> {
+            is FormElementViewHolder<out FormElement> -> {
                 formItemViewHolder.bindData(formItemsManager.getItem(position).data as FormElementItemData)
             }
         }

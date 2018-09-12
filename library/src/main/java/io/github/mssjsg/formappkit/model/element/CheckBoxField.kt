@@ -1,9 +1,7 @@
 package io.github.mssjsg.formappkit.model.element
 
-fun checkBoxField(id: String, isRequired: Boolean, title: String): CheckBoxField {
-    return CheckBoxField(id, CheckBoxField.Meta(isRequired, title))
-}
+import io.github.mssjsg.formappkit.model.Input
 
-class CheckBoxField(id: String, meta: CheckBoxField.Meta): InputField<CheckBoxField.Meta>(id, ELEMENT_TYPE_CHECK_BOX, meta) {
-    class Meta(isRequired: Boolean, val title: String): InputField.Meta(isRequired, Boolean::class.java)
-}
+class CheckBoxField(id: String, isRequired: Boolean, val title: String, val inputKey: String): InputField(id,
+        ELEMENT_TYPE_CHECK_BOX, isRequired,
+        arrayOf(Input(inputKey, Boolean::class.java)))

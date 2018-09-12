@@ -1,6 +1,6 @@
 package io.github.mssjsg.formappkit.model.element
 
-abstract class FormElement<T>(val id: String, val type: String, var data: T) {
+abstract class FormElement(val id: String, val type: String) {
     companion object {
         const val ELEMENT_TYPE_TITLE = "TYPE_TITLE";
         const val ELEMENT_TYPE_TEXT_FIELD = "TYPE_TEXT_FIELD";
