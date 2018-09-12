@@ -81,6 +81,10 @@ class FormAdapter(val formDataManager: FormDataManager, val formId: String,
                 return TextInputViewHolder(layoutInflater.inflate(R.layout.item_text_field, parent, false),
                         formId, formDataManager)
             }
+            FormElement.ELEMENT_TYPE_CHECK_BOX -> {
+                return CheckBoxViewHolder(layoutInflater.inflate(R.layout.item_check_box, parent, false),
+                        formId, formDataManager)
+            }
             FormElement.ELEMENT_TYPE_SUBFORM -> {
                 // TODO
             }
