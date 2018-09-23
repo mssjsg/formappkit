@@ -13,6 +13,6 @@ object FormAppKit {
             managers.put(managerId, FormAppManager())
         }
 
-        return managers.get(managerId)!!;
+        return managers[managerId]!!;
     }
 }

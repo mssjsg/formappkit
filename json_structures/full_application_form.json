@@ -1,0 +1,100 @@
+{
+    "type": "group",
+    "id": "full",
+    "title": "Full application",
+    "elements": [
+        {
+            "type": "group",
+            "id": "personal_details",
+            "title": "Personal details",
+            "elements": [
+                {
+                    "id": "name",
+                    "type": "text",
+                    "title": "What is your name?",
+                    "placeHolder": "name",
+                    "isRequired": true
+                },
+                {
+                    "id": "occupation",
+                    "type": "choice",
+                    "title": "What is your job?",
+                    "placeHolder": "occupation",
+                    "isRequired": false
+                },
+                {
+                    "id": "occupation",
+                    "type": "choice",
+                    "title": "What is your favourite food?",
+                    "placeHolder": "favourite food",
+                    "isRequired": false
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "id": "contact_information",
+            "title": "Contact information",
+            "elements": [
+                {
+                    "type": "phoneNumber",
+                    "title": "Mobile number",
+                    "id": "phone_number",
+                    "isRequired": true
+                }
+            ]
+        },
+        {
+            "type": "group",
+            "id": "certificates",
+            "title": "Certificates",
+            "elements": [
+                {
+                    "type": "button",
+                    "title": "Add new certificates",
+                    "action": {
+                        "type": "create",
+                        "args": {
+                            "location": "full.certificates",
+                            "target": "certificate_item"
+                        }
+                    }
+                }
+            ]
+        },
+        {
+            "type": "conditional",
+            "condition": {
+                "type": "regex",
+                "source": "personal_details.occupation",
+                "regex": "^(developer|engineer)$"
+            },
+            "elements": [
+                {
+                    "id": "occupation",
+                    "type": "choice",
+                    "title": "What is your job?",
+                    "hint": "occupation",
+                    "isRequired": true
+                }
+            ]
+        }
+    ],
+    "resources": {
+        "elements": {
+            "certificate_item": {
+                "type": "group",
+                "elements": [
+                    {
+                        "type": "text",
+                        "hint": "Name"
+                    },
+                    {
+                        "type": "date",
+                        "hint": "Created Date"
+                    }
+                ]
+            }
+        }
+    }
+}
