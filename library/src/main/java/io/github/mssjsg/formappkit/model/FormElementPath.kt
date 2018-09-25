@@ -9,6 +9,10 @@ data class FormElementPath(val ids: List<String>) {
         return ids.subList(0, path.ids.size) == path.ids
     }
 
+    fun last(): String {
+        return ids.last()
+    }
+
     fun append(id: String): FormElementPath {
         return FormElementPath(ids.plus(id))
     }

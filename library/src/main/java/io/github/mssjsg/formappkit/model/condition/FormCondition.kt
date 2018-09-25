@@ -1,5 +1,5 @@
 package io.github.mssjsg.formappkit.model.condition
 
-interface Condition {
+interface FormCondition {
     fun isFulfilled()
 }

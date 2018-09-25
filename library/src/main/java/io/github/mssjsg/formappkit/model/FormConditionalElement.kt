@@ -1,3 +1,5 @@
 package io.github.mssjsg.formappkit.model
 
-class FormConditionalElement(path: FormElementPath, title: String, val condition: String, val elements: List<FormElement>): FormElement(path, title)
+import io.github.mssjsg.formappkit.model.condition.FormCondition
+
+class FormConditionalElement(path: FormElementPath, title: String, val condition: FormCondition, val elements: List<FormElement>): FormElement(path, title)
