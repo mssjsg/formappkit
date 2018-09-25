@@ -36,13 +36,4 @@ class FormElementGroup(path: FormElementPath, title: String, val elements: Mutab
     fun <T: FormElement> getElement(path: FormElementPath): T? {
         return elements.filter { it.path == path }.firstOrNull() as T?
     }
-
-    fun toFormItems(): List<FormItem> {
-        return elements.map { FormItem(it) }
-    }
-
-    override fun toString(): String {
-        // TODO return json string
-        return super.toString()
-    }
 }

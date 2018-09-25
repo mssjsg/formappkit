@@ -12,6 +12,7 @@ import io.github.mssjsg.formappkit.R
 import io.github.mssjsg.formappkit.model.FormElementPath
 import io.github.mssjsg.formappkit.model.FormSession
 import io.github.mssjsg.formappkit.model.dataPathOf
+import io.github.mssjsg.formappkit.ui.formitem.FormItem
 import io.github.mssjsg.formappkit.ui.recyclerview.FormAdapter
 import io.github.mssjsg.formappkit.ui.recyclerview.SimpleFormAdapter
 
@@ -53,7 +54,7 @@ class FormFragment: Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         adapter = SimpleFormAdapter()
-        adapter.addFormItems(session.formElementGroup?.toFormItems() ?: emptyList())
+        adapter.addFormItems(session.formElementGroup?.elements?.map { FormItem(it) } ?: emptyList())
 
         list = view.findViewById(R.id.list)
         list.layoutManager = LinearLayoutManager(view.context).apply { orientation = LinearLayoutManager.VERTICAL }
